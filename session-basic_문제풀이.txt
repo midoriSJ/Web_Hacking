@@ -1,0 +1,43 @@
+이번엔 세션 하이재킹을 이용해야 하는 문제가 출제되었다.
+
+문제 설명은 이러하다.
+
+쿠키와 세션으로 인증 상태를 관리하는 간단한 로그인 서비스입니다.
+admin 계정으로 로그인에 성공하면 플래그를 획득할 수 있습니다.
+
+플래그 형식은 DH{...} 입니다.
+
+이번에도 하단의 서버 생성하기 버튼 눌러주고 입장.
+
+또 조잡한 페이지가 나를 반겨준다.
+
+이번에도 우측 상단의 Login 버튼을 눌러 guest / guest로 로그인
+
+Hello guest, you are not admin 메시지가 보이면 F12 눌러 쿠키 탭으로 진입.
+
+이번엔 쿠키가 아닌 sessionID 값이 나를 반겨준다.
+어라 근데 admin 세션은 어떻게 알아내지?
+
+라고 생각하던 와중 앞의 강의 내용이 생각났다.
+'/admin' <- 얘가 핵심이었다.
+
+혹시나 해서 guest로 로그인 된 상태로 url에 /admin을 추가해 보았더니
+
+"1979725fbc6916579d95c220c6acd4145d517b18f3924698c94084d5d1ac9609": "guest",
+"1c92aeae2909e26d894a539990581ceae5b72676ba776191f65ce95e7f589eb5": "guest",
+"88b8975b9a29a9b99510b45ac92636e15994da8d78ac7009c12fefd6ba5ceb71": "guest",
+"d2a73232de10fa61fca82e39ad15b5ff093bc293d84df6515b1cb897c1cfd19c": "guest",
+"d5185e9f397f9c800add7cbc539cf0bf1823c9c1f4022549717a00ab9ff55d7d": "guest",
+"ef8f73e9ef2ca6798b0f6fee0e4336a88f4a72e64b5743836f33796caba583e3": "guest",
+"efe0f4777acb26afa10fef6543ca7d9cccff12e4910552a03ca922ccb2f31e5b": "admin",
+"fa022316fcd65bfa80436e9aa22005da281b73545733bff4eeaa91c5319c33a7": "guest"
+
+이런 형식의 데이터가 들어있었다.
+
+여기서 guest ID 값은 무시해주고 admin ID 값을 복사해오자. 
+
+그리고 로그인 된 상태에서 sessionID 값을 admin ID로 바꿔보니
+
+Hello admin, flag is DH{...} 형태로 나왔다.
+
+그대로 복사해서 제출해보니 정답.
